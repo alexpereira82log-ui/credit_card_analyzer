@@ -1,5 +1,5 @@
 import pandas as pd
-
+from unidecode import unidecode
 
 class CSVProcessor:
 
@@ -30,12 +30,10 @@ class CSVProcessor:
         Padroniza nomes das colunas.
         """
 
-        df.columns = (
-            df.columns
-            .str.strip()
-            .str.lower()
-            .str.replace(" ", "_")
-        )
+        df.columns = [
+            unidecode(col.strip().lower().replace(" ", "_"))
+            for col in df.columns
+        ]
 
         return df
 

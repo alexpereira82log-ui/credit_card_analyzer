@@ -45,6 +45,7 @@ tenacity==9.1.4
 toml==0.10.2
 typing_extensions==4.15.0
 tzdata==2026.2
+Unidecode==1.4.0
 urllib3==2.7.0
 uvicorn==0.46.0
 watchdog==6.0.0
