@@ -1,6 +1,6 @@
 from app.processors.csv_processor import CSVProcessor
 from app.services.invoice_analysis_service import InvoiceAnalysisService
-
+from app.services.recurrence_service import RecurrenceService
 
 class UploadController:
 
@@ -35,6 +35,10 @@ class UploadController:
             ),
 
             "category_summary": InvoiceAnalysisService.category_summary(
+                analysis_df
+            ),
+
+            "recurring_purchases": RecurrenceService.recurring_purchases(
                 analysis_df
             )
         }

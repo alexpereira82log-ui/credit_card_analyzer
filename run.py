@@ -115,6 +115,23 @@ if uploaded_file:
             })
         )
 
+        st.subheader("Compras Recorrentes")
+
+        recurring_df = analysis["recurring_purchases"]
+
+        if recurring_df.empty:
+
+            st.warning("Nenhuma compra recorrente encontrada.")
+
+        else:
+
+            st.dataframe(
+                recurring_df.style.format({
+                    "valor_total": "R$ {:.2f}",
+                    "ticket_medio": "R$ {:.2f}"
+                })
+            )
+
         st.subheader("Informações da Base")
 
         col1, col2, col3 = st.columns(3)
