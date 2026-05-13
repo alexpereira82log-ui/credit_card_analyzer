@@ -188,6 +188,33 @@ if uploaded_file:
                 """
             )
 
+        st.subheader("Projeção da Próxima Fatura")
+
+        projection = analysis["projection"]
+
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+
+            st.metric(
+                "Assinaturas Previstas",
+                f"R$ {projection['subscriptions_total']:.2f}"
+            )
+
+        with col2:
+
+            st.metric(
+                "Parcelamentos Ativos",
+                f"R$ {projection['installments_total']:.2f}"
+            )
+
+        with col3:
+
+            st.metric(
+                "Próxima Fatura Estimada",
+                f"R$ {projection['projected_total']:.2f}"
+            )
+
         st.subheader("Informações da Base")
 
         col1, col2, col3 = st.columns(3)

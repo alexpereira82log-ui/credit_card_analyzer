@@ -3,6 +3,8 @@ from app.services.invoice_analysis_service import InvoiceAnalysisService
 from app.services.recurrence_service import RecurrenceService
 from app.services.subscription_service import SubscriptionService
 from app.services.installment_service import InstallmentService
+from app.services.projection_service import ProjectionService
+
 
 
 class UploadController:
@@ -13,6 +15,14 @@ class UploadController:
         df = CSVProcessor.read_invoice(file)
 
         analysis_df = InvoiceAnalysisService.get_analysis_dataframe(df)
+
+        subscriptions_df = SubscriptionService.detect_subscriptions(
+            analysis_df
+        )
+
+        installments_df = InstallmentService.detect_installments(
+            analysis_df
+        )
 
         analysis = {
             "total": InvoiceAnalysisService.calculate_total(analysis_df),
@@ -45,12 +55,13 @@ class UploadController:
                 analysis_df
             ),
 
-            "subscriptions": SubscriptionService.detect_subscriptions(
-                analysis_df
-            ),
+            "subscriptions": subscriptions_df,
 
-            "installments": InstallmentService.detect_installments(
-                analysis_df
+            "installments": installments_df,
+
+            "projection": ProjectionService.next_invoice_projection(
+                subscriptions_df,
+                installments_df
             )
         }
 
