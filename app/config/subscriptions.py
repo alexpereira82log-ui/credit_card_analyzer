@@ -1,0 +1,28 @@
+SUBSCRIPTION_KEYWORDS = [
+
+    "spotify",
+    "netflix",
+    "amazon prime canais",
+    "amazonprimebr",
+    "claro",
+    "wellhub",
+    "prime video",
+    "youtube",
+    "google",
+    "google one",
+    "apple",
+    "icloud",
+    "deezer",
+    "disney",
+    "max",
+    "hbo",
+    "chatgpt",
+    "openai",
+    "microsoft",
+    "xbox",
+    "playstation",
+    "dropbox",
+    "notion",
+    "canva",
+    "adobe"
+]

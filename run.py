@@ -132,6 +132,32 @@ if uploaded_file:
                 })
             )
 
+        st.subheader("Assinaturas Detectadas")
+
+        subscriptions_df = analysis["subscriptions"]
+
+        if subscriptions_df.empty:
+
+            st.warning("Nenhuma assinatura detectada.")
+
+        else:
+
+            st.dataframe(
+                subscriptions_df.style.format({
+                    "data": lambda x: x.strftime("%Y-%m-%d"),
+                    "valor": "R$ {:.2f}"
+                })
+            )
+
+            total_subscriptions = subscriptions_df["valor"].sum()
+
+            st.info(
+                f"""
+                Total mensal estimado com assinaturas:
+                R$ {total_subscriptions:.2f}
+                """
+            )
+
         st.subheader("Informações da Base")
 
         col1, col2, col3 = st.columns(3)
