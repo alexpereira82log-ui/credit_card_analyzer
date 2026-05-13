@@ -158,6 +158,36 @@ if uploaded_file:
                 """
             )
 
+        st.subheader("Parcelamentos Detectados")
+
+        installments_df = analysis["installments"]
+
+        if installments_df.empty:
+
+            st.warning("Nenhum parcelamento detectado.")
+
+        else:
+
+            st.dataframe(
+                installments_df.style.format({
+                    "data": lambda x: x.strftime("%Y-%m-%d"),
+                    "valor": "R$ {:.2f}",
+                    "comprometimento_futuro": "R$ {:.2f}"
+                })
+            )
+
+            future_commitment = (
+                installments_df["comprometimento_futuro"]
+                .sum()
+            )
+
+            st.info(
+                f"""
+                Comprometimento futuro identificado:
+                R$ {future_commitment:.2f}
+                """
+            )
+
         st.subheader("Informações da Base")
 
         col1, col2, col3 = st.columns(3)
