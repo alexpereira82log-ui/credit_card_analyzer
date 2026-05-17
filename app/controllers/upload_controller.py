@@ -4,7 +4,9 @@ from app.services.recurrence_service import RecurrenceService
 from app.services.subscription_service import SubscriptionService
 from app.services.installment_service import InstallmentService
 from app.services.projection_service import ProjectionService
-
+from app.services.financial_score_service import (
+    FinancialScoreService
+)
 
 
 class UploadController:
@@ -22,6 +24,12 @@ class UploadController:
 
         installments_df = InstallmentService.detect_installments(
             analysis_df
+        )
+
+        category_summary = (
+            InvoiceAnalysisService.category_summary(
+                analysis_df
+            )
         )
 
         analysis = {
@@ -47,9 +55,7 @@ class UploadController:
                 analysis_df
             ),
 
-            "category_summary": InvoiceAnalysisService.category_summary(
-                analysis_df
-            ),
+            "category_summary": category_summary,
 
             "recurring_purchases": RecurrenceService.recurring_purchases(
                 analysis_df
@@ -62,6 +68,12 @@ class UploadController:
             "projection": ProjectionService.next_invoice_projection(
                 subscriptions_df,
                 installments_df
+            ),
+
+            "financial_score": FinancialScoreService.calculate_score(
+                subscriptions_df,
+                installments_df,
+                category_summary
             )
         }
 

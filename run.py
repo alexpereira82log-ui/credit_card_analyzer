@@ -215,6 +215,40 @@ if uploaded_file:
                 f"R$ {projection['projected_total']:.2f}"
             )
 
+        st.subheader("Score Financeiro")
+
+        financial_score = analysis["financial_score"]
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+
+            st.metric(
+                "Score",
+                f"{financial_score['score']}/100"
+            )
+
+        with col2:
+
+            st.metric(
+                "Classificação",
+                financial_score["level"]
+            )
+
+        if financial_score["alerts"]:
+
+            st.subheader("Alertas Financeiros")
+
+            for alert in financial_score["alerts"]:
+
+                st.warning(alert)
+
+        else:
+
+            st.success(
+                "Nenhum alerta financeiro relevante encontrado."
+            )
+
         st.subheader("Informações da Base")
 
         col1, col2, col3 = st.columns(3)
