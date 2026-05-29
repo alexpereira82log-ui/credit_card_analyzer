@@ -24,5 +24,6 @@ SUBSCRIPTION_KEYWORDS = [
     "dropbox",
     "notion",
     "canva",
-    "adobe"
+    "adobe",
+    "openai chatgpt"
 ]
