@@ -25,5 +25,6 @@ SUBSCRIPTION_KEYWORDS = [
     "notion",
     "canva",
     "adobe",
-    "openai chatgpt"
+    "openai chatgpt",
+    "petlove saud"
 ]
