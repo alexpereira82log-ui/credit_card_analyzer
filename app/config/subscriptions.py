@@ -20,7 +20,6 @@ SUBSCRIPTION_KEYWORDS = [
     "openai",
     "microsoft",
     "xbox",
-    "playstation",
     "dropbox",
     "notion",
     "canva",
